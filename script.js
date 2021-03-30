@@ -1,6 +1,6 @@
 
-
-
+    let playerScore = 0;
+    let computerScore = 0;
 
 function computerPlay(){
 
@@ -10,48 +10,74 @@ function computerPlay(){
         case 1:
             return "rock";
         case 2:
-            return "scisors";
+            return "scissors";
     }
 }
 
+function addScore(result){
+    switch(result){
+        case 1:
+            computerScore++;
+            break;
+        case 2:
+            playerScore++
+            break;
+    }
+}
 function checkWinner(computer, player){
+    // 0 = No winner 1 = Computer 2 = Player
     if(computer == player){
-        return "No one wins";
+        return 0;
     }
     else if(computer == "rock" && player== "paper"){
-        return "You win paper beats rock";
+        return 2;
     }
-    else if(computer == "rock" && player == "scisors"){
-        return "You loose rock beats scisors";
+    else if(computer == "rock" && player == "scissors"){
+        return 1;
     }
     else if(computer == "paper" && player == "rock"){
-        return "You loose paper beats rock";
+        return 1;
     }
-    else if(computer == "paper" && player == "scisors"){
-        return "You win scisors beats paper";
+    else if(computer == "paper" && player == "scissors"){
+        return 2;
     }
-    else if(computer == "scisors" && player == "paper"){
-        return "You loose scisors beats paper";
+    else if(computer == "scissors" && player == "paper"){
+        return 1;
     }
-    else if(computer == "scisors" && player == "rock"){
-        return "You win rock beats scisors";
+    else if(computer == "scissors" && player == "rock"){
+        return 2;
     }
 }
 
+
+function tellWinner(computerChoice, playerChoice){
+    switch (checkWinner(computerChoice, playerChoice)) {
+        case 0:
+            return "No one wins.";
+        case 1:
+            addScore(1);
+            return "Computer wins, "+computerChoice+" beats "+playerChoice+".";
+        case 2:
+            addScore(2);
+            return "You win, "+playerChoice+" beats "+computerChoice+".";
+    }
+}
+
+function game(){
+    playerScore = 0;
+    computerScore = 0;
 
 for (i=0; i<5; i++){
     computer = computerPlay();
     player = prompt("What will it be ? (rock / paper / scisors").toLowerCase();
     console.log("Computer played : ", computer);
     console.log("Player played :", player)
-    console.log(checkWinner(computer, player));
+    console.log(tellWinner(computer, player));
+    console.log("Computer : "+computerScore+" to "+playerScore+" for player.")
+}
 }
 
-computer = computerPlay();
-player = prompt("What will it be ? (rock / paper / scisors").toLowerCase();
-console.log("Computer played : ", computer);
-console.log("Player played :", player)
-console.log(checkWinner(computer, player));
+game();
 
 
 
