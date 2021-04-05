@@ -1,3 +1,10 @@
+
+body{
+    background-color: aquamarine;
+}
+h1{
+    text-align: center;
+}
 #gameContainer{
     display:flex;
 
@@ -5,19 +12,47 @@
 
 }
 #choices{
+    display:flex;
+    flex-direction: column;
     margin-top: 20px;
-    max-width: 60px;
-    max-height: 60px;
+
 }
-#scoreContainer{
+#computerChoices{
+    display:flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+}
+#currentGameContainer{
+    display:flex;
+    flex-direction: column;
     width:250px;
     height:250px;
     border:1px solid black;
 }
-
-
-
+#scoreContainer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width:250px;
+    height:75px;
+    border:1px solid black;
+}
+#currentScore{
+    text-align: center;
+    padding: 10%;
+}
 img{
+    border-radius: 50%;
+    padding: 10px;
     width:60px;
     height: 60px;
+}
+
+#playerContainer > div > img:hover{
+    scale:1.1;
+    cursor:pointer;
+}
+.selected{
+    background-color: white;
 }

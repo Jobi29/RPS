@@ -15,12 +15,18 @@ function computerPlay(){
 }
 
 function addScore(result){
+    let player = document.querySelector('#player');
+    let computer = document.querySelector('#computer');
     switch(result){
         case 1:
             computerScore++;
+            player.textContent = playerScore;
+            computer.textContent = computerScore;
             break;
         case 2:
             playerScore++
+            player.textContent = playerScore;
+            computer.textContent = computerScore;
             break;
     }
 }
@@ -77,7 +83,44 @@ for (i=0; i<5; i++){
 }
 }
 
-game();
+//game();
 
+const playerChoice = document.querySelector('#choices');
+const computerChoice = document.querySelector('#computerChoices');
+const result = document.querySelector('#result');
+const childrens = document.querySelectorAll(".child");
 
+console.log(childrens);
+function addSelected(element) {
 
+    childrens.forEach(function(elem) {
+      elem.classList.remove("selected");
+    });
+    
+    if (element.classList.contains("selected")) {
+      element.classList.remove("selected");
+    } else {
+      element.classList.add("selected");
+    }
+  }
+
+playerChoice.addEventListener('click', function (e) {
+    player = e.target.id;
+    computer = computerPlay();
+    result.textContent=(tellWinner(computer, player));
+    addSelected(e.target);
+    (computerChoice.querySelector('#'+computer)).classList.add("selected");
+    if(computerScore == 3){
+        result.textContent='You lost, select an icon to play another game !';
+        playerScore=0;
+        computerScore=0;
+        player.textContent = playerScore;
+        computer.textContent = computerScore;
+    }else if(playerScore == 3){
+        result.textContent='You won, select an icon to play another game !';
+        playerScore=0;
+        computerScore=0;
+        player.textContent = playerScore;
+        computer.textContent = computerScore;
+    }
+  });
